@@ -6,12 +6,12 @@ if (empty($_SESSION['admin'])) {
     die();
 } else {
     if ($_SESSION['admin'] != 1 and $_SESSION['admin'] != 2) {
-        echo '<script language="javascript">
+        ?= '<script language="javascript">
                     window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
                     window.location.href="./logout.php";
-                  </script>';
+                  </script>' ?>;
     }
-    echo '
+    <?= '
             <style type="text/css">
                 .hidd {
                     display: none
@@ -65,7 +65,7 @@ if (empty($_SESSION['admin'])) {
                         margin: 1rem 0;
                     }
                 }
-            </style>';
+            </style>' ?>;
 
     if (isset($_REQUEST['submit'])) {
 
@@ -82,7 +82,7 @@ if (empty($_SESSION['admin'])) {
             $query2 = mysqli_query($config, "SELECT nama FROM perusahaan");
             list($nama) = mysqli_fetch_array($query2);
 
-            echo '
+            <?= '
                     <!-- SHOW DAFTAR AGENDA -->
                     <!-- Row Start -->
                     <div class="row">
@@ -125,7 +125,7 @@ if (empty($_SESSION['admin'])) {
                     <!-- Row form END -->
 
                     <div class="row agenda">
-                    <div class="disp hidd">';
+                    <div class="disp hidd">' ?>;
             $query2 = mysqli_query($config, "SELECT nama, cabang, divisi, alamat, logo FROM perusahaan");
             list($nama, $cabang, $divisi, $alamat, $logo) = mysqli_fetch_array($query2);
             <?= "<img class="logodisp" src="./upload/' . $logo . '"/>" ?>;
@@ -170,7 +170,7 @@ if (empty($_SESSION['admin'])) {
             if (mysqli_num_rows($query) > 0) {
                 $no = 0;
                 while ($row = mysqli_fetch_array($query)) {
-                    echo '
+                    <?= '
                                  <tr>
                                         <td>' . $row['no_brg'] . '</td>
                                         <td>' . indoDate($row['tgl_brg']) . '</td>
@@ -179,7 +179,7 @@ if (empty($_SESSION['admin'])) {
                                         <td>' . $row['nama_brg'] . '</td>
                                         <td>' . $row['jumlah_brg'] . '</td>
                                         <td>' . $row['lokasi_brg'] . '</td>
-                                        <td>';
+                                        <td>' ?>;
 
                     $id_user = $row['id_user'];
                     $query3 = mysqli_query($config, "SELECT nama FROM user WHERE id_user='$id_user'");
@@ -194,7 +194,7 @@ if (empty($_SESSION['admin'])) {
                                 </tr>';
                 }
             } else {
-                echo '<tr><td colspan="9"><center><p class="add">Tidak ada nomor barang</p></center></td></tr>';
+                <?= '<tr><td colspan="9"><center><p class="add">Tidak ada nomor barang</p></center></td></tr>' ?>;
             }
             echo '
                         </tbody></table>
