@@ -161,7 +161,7 @@ if (empty($_SESSION['admin'])) {
         <?php
         if (isset($_SESSION['errQ'])) {
             $errQ = $_SESSION['errQ'];
-            echo '<div id="alert-message" class="row">
+            <?= '<div id="alert-message" class="row">
                             <div class="col m12">
                                 <div class="card red lighten-5">
                                     <div class="card-content notif">
@@ -169,7 +169,7 @@ if (empty($_SESSION['admin'])) {
                                     </div>
                                 </div>
                             </div>
-                        </div>';
+                        </div>' ?> ;
             unset($_SESSION['errQ']);
         }
         if (isset($_SESSION['errEmpty'])) {
@@ -265,7 +265,7 @@ if (empty($_SESSION['admin'])) {
                         }
                         if (isset($_SESSION['errDup'])) {
                             $errDup = $_SESSION['errDup'];
-                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errDup . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errDup . '</div>' ?>;
                             unset($_SESSION['errDup']);
                         }
                         ?>
@@ -276,7 +276,7 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['tgl_brg'])) {
                             $tgl_brg = $_SESSION['tgl_brg'];
-                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $tgl_brg . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $tgl_brg . '</div>' ?>;
                             unset($_SESSION['tgl_brg']);
                         }
                         ?>
