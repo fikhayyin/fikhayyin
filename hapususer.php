@@ -23,7 +23,7 @@ if (empty($_SESSION['admin'])) {
 
             if (isset($_SESSION['errQ'])) {
                 $errQ = $_SESSION['errQ'];
-                echo '<div id="alert-message" class="row jarak-card">
+                <?= '<div id="alert-message" class="row jarak-card">
                             <div class="col m12">
                                 <div class="card red lighten-5">
                                     <div class="card-content notif">
@@ -31,7 +31,7 @@ if (empty($_SESSION['admin'])) {
                                     </div>
                                 </div>
                             </div>
-                        </div>';
+                        </div>' ?>;
                 unset($_SESSION['errQ']);
             }
 
