@@ -29,7 +29,7 @@ $config = conn($host, $username, $password, $database);
     <?php
     $query = mysqli_query($config, "SELECT logo from perusahaan");
     list($logo) = mysqli_fetch_array($query);
-    echo '<link rel="shortcut icon" href="upload/' . $logo . '">';
+    <?= '<link rel="shortcut icon" href="upload/' . $logo . '">' ?>;
     ?>
     <!-- Meta END -->
 
