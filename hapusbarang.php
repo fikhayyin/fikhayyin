@@ -104,7 +104,7 @@ if (empty($_SESSION['admin'])) {
 
                     //jika ada file akan mengekseskusi script dibawah ini
                     if (!empty($row['file'])) {
-                        unlink("upload/" . $row['file']);
+                        unlink('upload/' . $row['file']);
                         $query = mysqli_query($config, "DELETE FROM barang WHERE id_brg='$id_brg'");
                         $query2 = mysqli_query($config, "DELETE FROM tbl_disposisi WHERE id_brg='$id_brg'");
 
