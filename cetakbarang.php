@@ -128,15 +128,15 @@ if (empty($_SESSION['admin'])) {
                     <div class="disp hidd">';
             $query2 = mysqli_query($config, "SELECT nama, cabang, divisi, alamat, logo FROM perusahaan");
             list($nama, $cabang, $divisi, $alamat, $logo) = mysqli_fetch_array($query2);
-            echo '<img class="logodisp" src="./upload/' . $logo . '"/>';
+            echo "<img class="logodisp" src="./upload/' . $logo . '"/>";
 
-            echo '<h6 class="up">' . $nama . '</h6>';
+            echo "<h6 class="up">" . $nama . "</h6>";
 
-            echo '<h5 class="nama" id="nama">' . $cabang . '</h5><br/>';
+            echo "<h5 class="nama" id="nama">" . $cabang . "</h5><br/>";
 
-            echo '<h6 class="status">' . $divisi . '</h6>';
+            echo "<h6 class="status">" . $divisi . "</h6>";
 
-            echo '<span id="alamat">' . $alamat . '</span>
+            echo "<span id="alamat">" . $alamat . "</span>
 
                     </div>
                     <div class="separator"></div>
