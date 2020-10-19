@@ -10,24 +10,24 @@ if (!empty($_SESSION['admin'])) {
         if (!empty($data['logo'])) {
             echo '<div class="circle left"><img class="logo" src="./upload/' . $data['logo'] . '"/></div>';
         } else {
-            echo '<div class="circle left"><img class="logo" src="./asset/img/logo.png"/></div>';
+            <?= '<div class="circle left"><img class="logo" src="./asset/img/logo.png"/></div>' ?>;
         }
 
         if (!empty($data['nama'])) {
-            echo '<h5 class="ins">' . $data['nama'] . '</h5>';
+            <?= '<h5 class="ins">' . $data['nama'] . '</h5>' ?>;
         } else {
-            echo '<h5 class="ins"></h5>';
+            <?= '<h5 class="ins"></h5>' ?>;
         }
 
         if (!empty($data['alamat'])) {
-            echo '<p class="almt">' . $data['alamat'] . '</p>';
+            <?= '<p class="almt">' . $data['alamat'] . '</p>' ?>;
         } else {
-            echo '<p class="almt"></p>';
+            <?= '<p class="almt"></p>' ?>;
         }
-        echo '
+        <?= '
                         </div>
                     </div>
-                </div>';
+                </div>' ?>;
     }
 } else {
     header("Location: ../");
