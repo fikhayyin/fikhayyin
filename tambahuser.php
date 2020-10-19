@@ -138,7 +138,7 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['uname'])) {
                             $uname = $_SESSION['uname'];
-                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $uname . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $uname . '</div>' ?>;
                             unset($_SESSION['uname']);
                         }
                         if (isset($_SESSION['errUsername'])) {
