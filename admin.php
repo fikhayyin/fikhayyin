@@ -72,15 +72,15 @@ if (empty($_SESSION['admin'])) {
                         <div class="col s12">
                             <div class="card">
                                 <div class="card-content">
-                                    <h4>Selamat Datang <?php echo $_SESSION['nama']; ?></h4>
+                                    <h4>Selamat Datang <?= echo $_SESSION['nama']; ?></h4>
                                     <p class="description">Anda login sebagai
-                                        <?php
+                                        <?=
                                         if ($_SESSION['admin'] == 1) {
-                                            echo "<strong>Super Admin</strong>. Anda memiliki akses penuh terhadap sistem.";
+                                            <?= '<strong>Super Admin</strong>. Anda memiliki akses penuh terhadap sistem.' ?>;
                                         } elseif ($_SESSION['admin'] == 2) {
-                                            echo "<strong>Administrator</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.";
+                                            <? '<strong>Administrator</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.' ?>;
                                         } else {
-                                            echo "<strong>Staff</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.";
+                                            <? "<strong>Staff</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.' ?>;
                                         } ?></p>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@ if (empty($_SESSION['admin'])) {
                             <div class="card cyan">
                                 <div class="card-content">
                                     <span class="card-title white-text"><i class="material-icons md-36">mail</i> Jumlah Barang</span>
-                                    <?php echo '<h5 class="white-text link">' . $count1 . ' Barang Masuk</h5>'; ?>
+                                    <?= '<h5 class="white-text link">' . $count1 . ' Barang Masuk</h5>'; ?>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@ if (empty($_SESSION['admin'])) {
                             <div class="card lime darken-1">
                                 <div class="card-content">
                                     <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Jumlah Laporan</span>
-                                    <?php echo '<h5 class="white-text link">' . $count2 . ' Laporan Masuk</h5>'; ?>
+                                    <?= '<h5 class="white-text link">' . $count2 . ' Laporan Masuk</h5>'; ?>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@ if (empty($_SESSION['admin'])) {
                                 <div class="card blue accent-2">
                                     <div class="card-content">
                                         <span class="card-title white-text"><i class="material-icons md-36">people</i> Jumlah Pengguna</span>
-                                        <?php echo '<h5 class="white-text link">' . $count5 . ' Pengguna</h5>'; ?>
+                                        <?= '<h5 class="white-text link">' . $count5 . ' Pengguna</h5>'; ?>
                                     </div>
                                 </div>
                             </div>
