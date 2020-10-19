@@ -14,7 +14,7 @@ if (empty($_SESSION['admin'])) {
             || $_REQUEST['merk_brg'] == "" || $_REQUEST['tipe'] == "" || $_REQUEST['tgl_brg'] == ""  || $_REQUEST['keterangan'] == ""
         ) {
             $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
-            echo '<script language="javascript">window.history.back();</script>';
+            <?= '<script language="javascript">window.history.back();</script>' ?>;
         } else {
 
             $no_brg = $_REQUEST['no_brg'];
@@ -31,42 +31,42 @@ if (empty($_SESSION['admin'])) {
             //validasi input data
             if (!preg_match("/^[0-9]*$/", $no_brg)) {
                 $_SESSION['eno_brg'] = 'Form Nomor Equipment harus diisi angka!';
-                echo '<script language="javascript">window.history.back();</script>';
+                <?= '<script language="javascript">window.history.back();</script>' ?>;
             } else {
 
                 if (!preg_match("/^[a-zA-Z0-9.\/ , -]*$/", $lokasi_brg)) {
                     $_SESSION['elokasi_brg'] = 'Form lokasi Equipment hanya boleh mengandung karakter huruf, angka, spasi,koma(,), titik(.), minus(-) dan garis miring(/)';
-                    echo '<script language="javascript">window.history.back();</script>';
+                    <?= '<script language="javascript">window.history.back();</script>' ?>;
                 } else {
 
                     if (!preg_match("/^[a-zA-Z0-9.,() \/ -]*$/", $jumlah_brg)) {
                         $_SESSION['ejumlah_brg'] = 'Form Jumlah Equipment hanya boleh diisi huruf dan angka';
-                        echo '<script language="javascript">window.history.back();</script>';
+                        <?= '<script language="javascript">window.history.back();</script>' ?>;
                     } else {
 
                         if (!preg_match("/^[a-zA-Z0-9.,_()%&@\/\r\n -]*$/", $nama_brg)) {
                             $_SESSION['enama_brg'] = 'Form nama_brg hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), underscore(_), dan(&) persen(%) dan at(@)';
-                            echo '<script language="javascript">window.history.back();</script>';
+                            <?= '<script language="javascript">window.history.back();</script>' ?>;
                         } else {
 
                             if (!preg_match("/^[a-zA-Z0-9., ]*$/", $nmerk_brg)) {
                                 $_SESSION['emerk_brg'] = 'Form merk_brg hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,)';
-                                echo '<script language="javascript">window.history.back();</script>';
+                                <?= '<script language="javascript">window.history.back();</script>' ?>;
                             } else {
 
                                 if (!preg_match("/^[a-zA-Z0-9., -]*$/", $tipe)) {
                                     $_SESSION['etipe'] = 'Form tipe hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,) dan minus (-)';
-                                    echo '<script language="javascript">window.history.back();</script>';
+                                    <?= '<script language="javascript">window.history.back();</script>' ?>;
                                 } else {
 
                                     if (!preg_match("/^[0-9.-]*$/", $tgl_brg)) {
                                         $_SESSION['etgl_brg'] = 'Form Tanggal penerimaan Equipment hanya boleh mengandung angka dan minus(-)';
-                                        echo '<script language="javascript">window.history.back();</script>';
+                                        <?= '<script language="javascript">window.history.back();</script>' ?>;
                                     } else {
 
                                         if (!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $keterangan)) {
                                             $_SESSION['eketerangan'] = 'Form Keterangan hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()';
-                                            echo '<script language="javascript">window.history.back();</script>';
+                                            <?= '<script language="javascript">window.history.back();</script>' ?>;
                                         } else {
 
 
@@ -102,7 +102,7 @@ if (empty($_SESSION['admin'])) {
                                                                 die();
                                                             } else {
                                                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                                echo '<script language="javascript">window.history.back();</script>';
+                                                                <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                             }
                                                         } else {
 
@@ -117,16 +117,16 @@ if (empty($_SESSION['admin'])) {
                                                                 die();
                                                             } else {
                                                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                                echo '<script language="javascript">window.history.back();</script>';
+                                                                <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                             }
                                                         }
                                                     } else {
                                                         $_SESSION['errSize'] = 'Ukuran file yang diupload terlalu besar!';
-                                                        echo '<script language="javascript">window.history.back();</script>';
+                                                        <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                     }
                                                 } else {
                                                     $_SESSION['errFormat'] = 'Format file yang diperbolehkan hanya *.JPG, *.PNG, *.DOC, *.DOCX atau *.PDF!';
-                                                    echo '<script language="javascript">window.history.back();</script>';
+//                                                     <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                 }
                                             } else {
 
@@ -141,7 +141,7 @@ if (empty($_SESSION['admin'])) {
                                                     die();
                                                 } else {
                                                     $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                    echo '<script language="javascript">window.history.back();</script>';
+                                                    <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                 }
                                             }
                                         }
@@ -160,10 +160,10 @@ if (empty($_SESSION['admin'])) {
         list($id_brg, $no_brg, $lokasi_brg, $jumlah_brg, $nama_brg, $merk_brg, $tipe, $tgl_brg, $keterangan, $id_user) = mysqli_fetch_array($query);
 
         if ($_SESSION['id_user'] != $id_user and $_SESSION['id_user'] != 1 and $_SESSION['id_user'] != 2) {
-            echo '<script language="javascript">
+            <?= '<script language="javascript">
                     window.alert("ERROR! Anda tidak memiliki hak akses untuk mengedit data ini");
                     window.location.href="./admin.php?page=ibm";
-                  </script>';
+                  </script>'?>;
         } else { ?>
 
             <!-- Row Start -->
@@ -185,7 +185,7 @@ if (empty($_SESSION['admin'])) {
             <?php
             if (isset($_SESSION['errQ'])) {
                 $errQ = $_SESSION['errQ'];
-                echo '<div id="alert-message" class="row">
+                <?= '<div id="alert-message" class="row">
                             <div class="col m12">
                                 <div class="card red lighten-5">
                                     <div class="card-content notif">
@@ -193,12 +193,12 @@ if (empty($_SESSION['admin'])) {
                                     </div>
                                 </div>
                             </div>
-                        </div>';
+                        </div>' ?>;
                 unset($_SESSION['errQ']);
             }
             if (isset($_SESSION['errEmpty'])) {
                 $errEmpty = $_SESSION['errEmpty'];
-                echo '<div id="alert-message" class="row">
+                <?= '<div id="alert-message" class="row">
                             <div class="col m12">
                                 <div class="card red lighten-5">
                                     <div class="card-content notif">
@@ -206,7 +206,7 @@ if (empty($_SESSION['admin'])) {
                                     </div>
                                 </div>
                             </div>
-                        </div>';
+                        </div>' ?>;
                 unset($_SESSION['errEmpty']);
             }
             ?>
