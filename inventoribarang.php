@@ -76,7 +76,7 @@ if (empty($_SESSION['admin'])) {
             <?php
             if (isset($_SESSION['succAdd'])) {
                 $succAdd = $_SESSION['succAdd'];
-                echo '<div id="alert-message" class="row">
+                <?= '<div id="alert-message" class="row">
                                 <div class="col m12">
                                     <div class="card green lighten-5">
                                         <div class="card-content notif">
@@ -84,12 +84,12 @@ if (empty($_SESSION['admin'])) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>';
+                            </div>' ?>;
                 unset($_SESSION['succAdd']);
             }
             if (isset($_SESSION['succEdit'])) {
                 $succEdit = $_SESSION['succEdit'];
-                echo '<div id="alert-message" class="row">
+                <?= '<div id="alert-message" class="row">
                                 <div class="col m12">
                                     <div class="card green lighten-5">
                                         <div class="card-content notif">
@@ -97,12 +97,12 @@ if (empty($_SESSION['admin'])) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>';
+                            </div>' ?>;
                 unset($_SESSION['succEdit']);
             }
             if (isset($_SESSION['succDel'])) {
                 $succDel = $_SESSION['succDel'];
-                echo '<div id="alert-message" class="row">
+                <?= '<div id="alert-message" class="row">
                                 <div class="col m12">
                                     <div class="card green lighten-5">
                                         <div class="card-content notif">
@@ -110,7 +110,7 @@ if (empty($_SESSION['admin'])) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>';
+                            </div>' ?>;
                 unset($_SESSION['succDel']);
             }
             ?>
@@ -121,7 +121,7 @@ if (empty($_SESSION['admin'])) {
     <?php
             if (isset($_REQUEST['submit'])) {
                 $cari = mysqli_real_escape_string($config, $_REQUEST['cari']);
-                echo '
+                <?= '
                         <div class="col s12" style="margin-top: -18px;">
                             <div class="card blue lighten-5">
                                 <div class="card-content">
@@ -144,7 +144,7 @@ if (empty($_SESSION['admin'])) {
                                 <th width="18%">Tindakan <span class="right"><i class="material-icons" style="color: #333;">settings</i></span></th>
                                 </tr>
                             </thead>
-                            <tbody>';
+                            <tbody>' ?>;
 
                 //script untuk mencari data
                 $query = mysqli_query($config, "SELECT * FROM barang WHERE nama_brg LIKE '%$cari%' ORDER by id_brg DESC LIMIT 15");
@@ -152,48 +152,48 @@ if (empty($_SESSION['admin'])) {
                     $no = 1;
                     $no_barang = 1;
                     while ($row = mysqli_fetch_array($query)) {
-                        echo '
+                        <?= '
                         <tr>
                         <td>' . $no_barang . '</td>
                         <td>' . indoDate($row['tgl_brg']) . '</td>
                         <td>' . $row['merk_brg'] . '</td>
                         <td>' . $row['tipe'] . '</td>
-                        <td>' . substr($row['nama_brg'], 0, 200) . '<br/><strong></strong>';
+                        <td>' . substr($row['nama_brg'], 0, 200) . '<br/><strong></strong>' ?>;
 
                         if (!empty($row[''])) {
-                            echo ' <strong><a href="?page=gsm&act=fsm&id_brg=' . $row['id_brg'] . '">' . $row[''] . '</a></strong>';
+                            <?= ' <strong><a href="?page=gsm&act=fsm&id_brg=' . $row['id_brg'] . '">' . $row[''] . '</a></strong>' ?>;
                         } else {
-                            echo '<em></em>';
+                            <?= '<em></em>' ?>;
                         }
-                        echo '</td>
+                        <?= '</td>
                         <td>' . $row['jumlah_brg'] . '</td>
                         <td>' . $row['lokasi_brg'] . '</td>
-                        <td>';
+                        <td>' ?>;
 
                         if ($_SESSION['id_user'] != $row['id_user'] and $_SESSION['id_user'] != 1 and $_SESSION['id_user'] != 2) {
-                            echo '<a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_brg=' . $row['id_brg'] . '" target="_blank">
-                                            <i class="material-icons">print</i> PRINT</a>';
+                            <?= '<a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_brg=' . $row['id_brg'] . '" target="_blank">
+                                            <i class="material-icons">print</i> PRINT</a>' ?>;
                         } else {
-                            echo '<a class="btn small blue waves-effect waves-light" href="?page=ibm&act=edit&id_brg=' . $row['id_brg'] . '">
+                            <?= '<a class="btn small blue waves-effect waves-light" href="?page=ibm&act=edit&id_brg=' . $row['id_brg'] . '">
                                                 <i class="material-icons">edit</i> EDIT</a>
                                             <a class="btn small deep-orange waves-effect waves-light" href="?page=ibm&act=del&id_brg=' . $row['id_brg'] . '">
-                                                <i class="material-icons">delete</i> DEL</a>';
+                                                <i class="material-icons">delete</i> DEL</a>' ?>;
                         }
-                        echo '
+                        <?= '
                                         </td>
-                                    </tr>';
+                                    </tr>' ?>;
                         $no_barang++;
                     }
                 } else {
-                    echo '<tr><td colspan="5"><center><p class="tbh">Tidak ada data yang ditemukan</p></center></td></tr>';
+                    <?= '<tr><td colspan="5"><center><p class="tbh">Tidak ada data yang ditemukan</p></center></td></tr>' ?>;
                 }
-                echo '</tbody></table><br/><br/>
+                <?= '</tbody></table><br/><br/>
                         </div>
                     </div>
-                    <!-- Row form END -->';
+                    <!-- Row form END -->' ?>;
             } else {
 
-                echo '
+                <?= '
                         <div class="col m12" id="colres">
                             <table class="bordered" id="tbl">
                                 <thead class="blue lighten-4" id="head">
@@ -209,10 +209,10 @@ if (empty($_SESSION['admin'])) {
 
                                             <div id="modal" class="modal">
                                                 <div class="modal-content white">
-                                                    <h5>Jumlah data yang ditampilkan per halaman</h5>';
+                                                    <h5>Jumlah data yang ditampilkan per halaman</h5>' ?>;
                 $query = mysqli_query($config, "SELECT id_atur,barang FROM pengaturan");
                 list($id_atur, $barang) = mysqli_fetch_array($query);
-                echo '
+                <?= '
                                                     <div class="row">
                                                         <form method="post" action="">
                                                             <div class="input-field col s12">
@@ -231,7 +231,7 @@ if (empty($_SESSION['admin'])) {
                                                                     </select>
                                                                 </div>
                                                                 <div class="modal-footer white">
-                                                                    <button type="submit" class="modal-action waves-effect waves-green btn-flat" name="simpan">Simpan</button>';
+                                                                    <button type="submit" class="modal-action waves-effect waves-green btn-flat" name="simpan">Simpan</button>' ?>;
                 if (isset($_REQUEST['simpan'])) {
                     $id_atur = "1";
                     $barang = $_REQUEST['barang'];
@@ -243,7 +243,7 @@ if (empty($_SESSION['admin'])) {
                         die();
                     }
                 }
-                echo '
+                <?= '
                                                                     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Batal</a>
                                                                 </div>
                                                             </div>
@@ -254,7 +254,7 @@ if (empty($_SESSION['admin'])) {
 
                                     </tr>
                                 </thead>
-                                <tbody>';
+                                <tbody>' ?>;
 
                 //script untuk menampilkan data
                 $query = mysqli_query($config, "SELECT * FROM barang ORDER by id_brg DESC LIMIT $curr, $limit");
@@ -262,63 +262,63 @@ if (empty($_SESSION['admin'])) {
                     $no = 1;
                     $no_barang = 1;
                     while ($row = mysqli_fetch_array($query)) {
-                        echo '
+                        <?= '
                                       <tr>
                                         <td>' . $no_barang . '</td>
                                         <td>' . indoDate($row['tgl_brg']) . '</td>
                                         <td>' . $row['merk_brg'] . '</td>
                                         <td>' . $row['tipe'] . '</td>
-                                        <td>' . substr($row['nama_brg'], 0, 200) . '<br/><strong></strong>';
+                                        <td>' . substr($row['nama_brg'], 0, 200) . '<br/><strong></strong>' ?>;
 
                         if (!empty($row[''])) {
-                            echo ' <strong><a href="?page=gsm&act=fsm&id_brg=' . $row['id_brg'] . '">' . $row[''] . '</a></strong>';
+                            <?= ' <strong><a href="?page=gsm&act=fsm&id_brg=' . $row['id_brg'] . '">' . $row[''] . '</a></strong>' ?>;
                         } else {
-                            echo '<em></em>';
+                            <?= '<em></em>' ?>;
                         }
-                        echo '</td>
+                        <?= '</td>
                                         <td>' . $row['jumlah_brg'] . '</td>
                                         <td>' . $row['lokasi_brg'] . '</td>
-                                        <td>';
+                                        <td>' ?>;
 
                         if ($_SESSION['id_user'] != $row['id_user'] and $_SESSION['id_user'] != 1 and $_SESSION['id_user'] != 2) {
                             echo '<a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_brg=' . $row['id_brg'] . '" target="_blank">
                                                 <i class="material-icons">print</i> PRINT</a>';
                         } else {
-                            echo '<a class="btn small blue waves-effect waves-light" href="?page=ibm&act=edit&id_brg=' . $row['id_brg'] . '">
+                            <?= '<a class="btn small blue waves-effect waves-light" href="?page=ibm&act=edit&id_brg=' . $row['id_brg'] . '">
                                                     <i class="material-icons">edit</i> EDIT</a>
                                                 <a class="btn small deep-orange waves-effect waves-light" href="?page=ibm&act=del&id_brg=' . $row['id_brg'] . '">
-                                                    <i class="material-icons">delete</i> DEL</a>';
+                                                    <i class="material-icons">delete</i> DEL</a>' ?>;
                         }
-                        echo '
+                        <?= '
                                         </td>
-                                    </tr>';
+                                    </tr>' ?>;
                         $no_barang++;
                     }
                 } else {
-                    echo '<tr><td colspan="5"><center><p class="tbh">Tidak ada barang untuk ditampilkan. <u><a href="?page=ibm&act=tbh">Tambah barang baru</a></u></p></center></td></tr>';
+                    <?= '<tr><td colspan="5"><center><p class="tbh">Tidak ada barang untuk ditampilkan. <u><a href="?page=ibm&act=tbh">Tambah barang baru</a></u></p></center></td></tr>' ?>;
                 }
-                echo '</tbody></table>
+                <?= '</tbody></table>
                         </div>
                     </div>
-                    <!-- Row form END -->';
+                    <!-- Row form END -->' ?>;
 
                 $query = mysqli_query($config, "SELECT * FROM barang");
                 $cdata = mysqli_num_rows($query);
                 $cpg = ceil($cdata / $limit);
 
-                echo '<br/><!-- Pagination START -->
-                          <ul class="pagination">';
+                <?= '<br/><!-- Pagination START -->
+                          <ul class="pagination">' ?>;
 
                 if ($cdata > $limit) {
 
                     //first and previous pagging
                     if ($pg > 1) {
                         $prev = $pg - 1;
-                        echo '<li><a href="?page=ibm&pg=1"><i class="material-icons md-48">first_page</i></a></li>
-                                  <li><a href="?page=ibm&pg=' . $prev . '"><i class="material-icons md-48">chevron_left</i></a></li>';
+                        <?= '<li><a href="?page=ibm&pg=1"><i class="material-icons md-48">first_page</i></a></li>
+                                  <li><a href="?page=ibm&pg=' . $prev . '"><i class="material-icons md-48">chevron_left</i></a></li>' ?>;
                     } else {
-                        echo '<li class="disabled"><a href="#"><i class="material-icons md-48">first_page</i></a></li>
-                                  <li class="disabled"><a href="#"><i class="material-icons md-48">chevron_left</i></a></li>';
+                        <?= '<li class="disabled"><a href="#"><i class="material-icons md-48">first_page</i></a></li>
+                                  <li class="disabled"><a href="#"><i class="material-icons md-48">chevron_left</i></a></li>' ?>;
                     }
 
                     //perulangan pagging
@@ -332,14 +332,14 @@ if (empty($_SESSION['admin'])) {
                     //last and next pagging
                     if ($pg < $cpg) {
                         $next = $pg + 1;
-                        echo '<li><a href="?page=ibm&pg=' . $next . '"><i class="material-icons md-48">chevron_right</i></a></li>
-                                  <li><a href="?page=ibm&pg=' . $cpg . '"><i class="material-icons md-48">last_page</i></a></li>';
+                        <?= '<li><a href="?page=ibm&pg=' . $next . '"><i class="material-icons md-48">chevron_right</i></a></li>
+                                  <li><a href="?page=ibm&pg=' . $cpg . '"><i class="material-icons md-48">last_page</i></a></li>' ?>;
                     } else {
-                        echo '<li class="disabled"><a href="#"><i class="material-icons md-48">chevron_right</i></a></li>
-                                  <li class="disabled"><a href="#"><i class="material-icons md-48">last_page</i></a></li>';
+                        <?= '<li class="disabled"><a href="#"><i class="material-icons md-48">chevron_right</i></a></li>
+                                  <li class="disabled"><a href="#"><i class="material-icons md-48">last_page</i></a></li>' ?>;
                     }
-                    echo '
-                        </ul>';
+                    <?= '
+                        </ul>' ?>;
                 } else {
                     echo '';
                 }
