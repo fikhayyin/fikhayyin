@@ -158,7 +158,7 @@ if (empty($_SESSION['admin'])) {
         $id_brg = mysqli_real_escape_string($config, $_REQUEST['id_brg']);
         $query = mysqli_query($config, "SELECT id_brg, no_brg, lokasi_brg, jumlah_brg, nama_brg, merk_brg, tipe, tgl_brg, keterangan, id_user FROM barang WHERE id_brg='$id_brg'");
         list($id_brg, $no_brg, $lokasi_brg, $jumlah_brg, $nama_brg, $merk_brg, $tipe, $tgl_brg, $keterangan, $id_user) = mysqli_fetch_array($query);
-
+    <?=
         if ($_SESSION['id_user'] != $id_user and $_SESSION['id_user'] != 1 and $_SESSION['id_user'] != 2) {
             <?= '<script language="javascript">
                     window.alert("ERROR! Anda tidak memiliki hak akses untuk mengedit data ini");
