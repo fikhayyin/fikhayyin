@@ -30,37 +30,37 @@ if (empty($_SESSION['admin'])) {
             //validasi input data
             if (!preg_match("/^[0-9]*$/", $no_cek)) {
                 $_SESSION['no_cekk'] = 'Form Nomor checklist harus diisi angka!';
-                echo '<script language="javascript">window.history.back();</script>';
+                <?= '<script language="javascript">window.history.back();</script>' ?>;
             } else {
 
                 if (!preg_match("/^[a-zA-Z0-9.\/ -]*$/", $area)) {
                     $_SESSION['areak'] = 'Form area hanya boleh mengandung karakter huruf, angka, spasi, titik(.), minus(-) dan garis miring(/)';
-                    echo '<script language="javascript">window.history.back();</script>';
+                    <?= '<script language="javascript">window.history.back();</script>' ?>;
                 } else {
 
                     if (!preg_match("/^[a-zA-Z0-9.,() \/ -]*$/", $hasil)) {
                         $_SESSION['hasil'] = 'Form hasil hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), kurung() dan garis miring(/)';
-                        echo '<script language="javascript">window.history.back();</script>';
+                        <?= '<script language="javascript">window.history.back();</script>' ?>;
                     } else {
 
                         if (!preg_match("/^[a-zA-Z0-9.,_()%&@\/\r\n -]*$/", $nama_cek)) {
                             $_SESSION['nama_cekk'] = 'Form nama_cek Ringkas hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), underscore(_), dan(&) persen(%) dan at(@)';
-                            echo '<script language="javascript">window.history.back();</script>';
+                            <?= '<script language="javascript">window.history.back();</script>' ?>;
                         } else {
 
                             if (!preg_match("/^[a-zA-Z0-9., ]*$/", $ntipe)) {
                                 $_SESSION['tipek'] = 'Form tipe  hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,)';
-                                echo '<script language="javascript">window.history.back();</script>';
+                                <?= '<script language="javascript">window.history.back();</script>' ?>;
                             } else {
 
                                 if (!preg_match("/^[0-9.-]*$/", $tgl_lpr)) {
                                     $_SESSION['tgl_lprk'] = 'Form Tanggal checklist hanya boleh mengandung angka dan minus(-)';
-                                    echo '<script language="javascript">window.history.back();</script>';
+                                    <?= '<script language="javascript">window.history.back();</script>' ?>;
                                 } else {
 
                                     if (!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $keterangan)) {
                                         $_SESSION['keterangank'] = 'Form Keterangan hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()';
-                                        echo '<script language="javascript">window.history.back();</script>';
+                                        <?= '<script language="javascript">window.history.back();</script>' ?>;
                                     } else {
 
                                      
@@ -68,7 +68,7 @@ if (empty($_SESSION['admin'])) {
 
                                         if ($result > 0) {
                                             $_SESSION['errDup'] = 'Nomor checklist sudah terpakai, gunakan yang lain!';
-                                            echo '<script language="javascript">window.history.back();</script>';
+                                            <?= '<script language="javascript">window.history.back();</script>' ?>;
                                         } else {
 
                                             $ekstensi = array('xls', 'xlsx', 'pdf');
@@ -102,15 +102,15 @@ if (empty($_SESSION['admin'])) {
                                                             die();
                                                         } else {
                                                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                            echo '<script language="javascript">window.history.back();</script>';
+                                                            <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                         }
                                                     } else {
                                                         $_SESSION['errSize'] = 'Ukuran file yang diupload terlalu besar!';
-                                                        echo '<script language="javascript">window.history.back();</script>';
+                                                        <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                     }
                                                 } else {
                                                     $_SESSION['errFormat'] = 'Format file yang diperbolehkan hanya *.XLS, *.XLSX atau *.PDF!';
-                                                    echo '<script language="javascript">window.history.back();</script>';
+                                                    <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                 }
                                             } else {
                                                 $query = mysqli_query($config, "INSERT INTO checklist(no_cek,hasil,area,nama_cek,tipe,tgl_lpr,
@@ -123,7 +123,7 @@ if (empty($_SESSION['admin'])) {
                                                     die();
                                                 } else {
                                                     $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                    echo '<script language="javascript">window.history.back();</script>';
+                                                    <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                 }
                                             }
                                         }
@@ -156,7 +156,7 @@ if (empty($_SESSION['admin'])) {
         <?php
         if (isset($_SESSION['errQ'])) {
             $errQ = $_SESSION['errQ'];
-            echo '<div id="alert-message" class="row">
+            <?= '<div id="alert-message" class="row">
                             <div class="col m12">
                                 <div class="card red lighten-5">
                                     <div class="card-content notif">
@@ -164,12 +164,12 @@ if (empty($_SESSION['admin'])) {
                                     </div>
                                 </div>
                             </div>
-                        </div>';
+                        </div>' ?>;
             unset($_SESSION['errQ']);
         }
         if (isset($_SESSION['errEmpty'])) {
             $errEmpty = $_SESSION['errEmpty'];
-            echo '<div id="alert-message" class="row">
+            <?= '<div id="alert-message" class="row">
                             <div class="col m12">
                                 <div class="card red lighten-5">
                                     <div class="card-content notif">
@@ -177,7 +177,7 @@ if (empty($_SESSION['admin'])) {
                                     </div>
                                 </div>
                             </div>
-                        </div>';
+                        </div>' ?>;
             unset($_SESSION['errEmpty']);
         }
         ?>
@@ -192,7 +192,7 @@ if (empty($_SESSION['admin'])) {
                 <div class="row">
                     <div class="input-field col s6">
                         <?php
-                        echo '<input id="no_cek" type="number" class="validate" name="no_cek" value="';
+                        <?= '<input id="no_cek" type="number" class="validate" name="no_cek" value="' ?>;
                         $sql = mysqli_query($config, "SELECT no_cek FROM checklist");
                         $no_cek = "1";
                         if (mysqli_num_rows($sql) == 0) {
