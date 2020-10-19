@@ -225,7 +225,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['eno_brg'])) {
                                 $eno_brg = $_SESSION['eno_brg'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $eno_brg . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $eno_brg . '</div>' ?>;
                                 unset($_SESSION['eno_brg']);
                             }
                             ?>
@@ -236,7 +236,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['emerk_brg'])) {
                                 $emerk_brg = $_SESSION['emerk_brg'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $emerk_brg . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $emerk_brg . '</div>' ?>;
                                 unset($_SESSION['emerk_brg']);
                             }
                             ?>
@@ -247,7 +247,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['ejumlah_brg'])) {
                                 $ejumlah_brg = $_SESSION['ejumlah_brg'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $ejumlah_brg . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $ejumlah_brg . '</div>' ?>;
                                 unset($_SESSION['ejumlah_brg']);
                             }
                             ?>
@@ -258,7 +258,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['etipe'])) {
                                 $etipe = $_SESSION['etipe'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $etipe . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $etipe . '</div>' ?>;
                                 unset($_SESSION['etipe']);
                             }
                             ?>
