@@ -23,22 +23,22 @@ if (empty($_SESSION['admin'])) {
             //validasi input data
             if (!preg_match("/^[a-zA-Z0-9_]*$/", $username)) {
                 $_SESSION['uname'] = 'Form Username hanya boleh mengandung karakter huruf, angka dan underscore (_)';
-                echo '<script language="javascript">window.history.back();</script>';
+                <?= '<script language="javascript">window.history.back();</script>' ?>;
             } else {
 
                 if (!preg_match("/^[a-zA-Z., ]*$/", $nama)) {
                     $_SESSION['namauser'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.) dan koma(,)';
-                    echo '<script language="javascript">window.history.back();</script>';
+                    <?= '<script language="javascript">window.history.back();</script>' ?>;
                 } else {
 
                     if (!preg_match("/^[0-9. -]*$/", $nip)) {
                         $_SESSION['nipuser'] = 'Form NIM hanya boleh mengandung karakter angka, spasi dan minus(-)';
-                        echo '<script language="javascript">window.history.back();</script>';
+                        <?= '<script language="javascript">window.history.back();</script>' ?>;
                     } else {
 
                         if (!preg_match("/^[2-3]*$/", $admin)) {
                             $_SESSION['tipeuser'] = 'Form Level pengguna hanya boleh mengandung karakter angka 2 atau 3';
-                            echo '<script language="javascript">window.history.back();</script>';
+                            <?= '<script language="javascript">window.history.back();</script>' ?>;
                         } else {
 
                             $cek = mysqli_query($config, "SELECT * FROM user WHERE username='$username'");
@@ -46,17 +46,17 @@ if (empty($_SESSION['admin'])) {
 
                             if ($result > 0) {
                                 $_SESSION['errUsername'] = 'Username sudah terpakai, gunakan yang lain!';
-                                echo '<script language="javascript">window.history.back();</script>';
+                                <?= '<script language="javascript">window.history.back();</script>' ?>;
                             } else {
 
                                 if (strlen($username) < 5) {
                                     $_SESSION['errUser5'] = 'Username minimal 5 karakter!';
-                                    echo '<script language="javascript">window.history.back();</script>';
+                                    <?= '<script language="javascript">window.history.back();</script>' ?>;
                                 } else {
 
                                     if (strlen($password) < 5) {
                                         $_SESSION['errPassword'] = 'Password minimal 5 karakter!';
-                                        echo '<script language="javascript">window.history.back();</script>';
+                                        <?= '<script language="javascript">window.history.back();</script>' ?>;
                                     } else {
 
                                         $query = mysqli_query($config, "INSERT INTO user(username,password,nama,nip,admin) VALUES('$username',MD5('$password'),'$nama','$nip','$admin')");
@@ -67,7 +67,7 @@ if (empty($_SESSION['admin'])) {
                                             die();
                                         } else {
                                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                            echo '<script language="javascript">window.history.back();</script>';
+                                            <?= '<script language="javascript">window.history.back();</script>' ?>;
                                         }
                                     }
                                 }
@@ -98,7 +98,7 @@ if (empty($_SESSION['admin'])) {
         <?php
         if (isset($_SESSION['errQ'])) {
             $errQ = $_SESSION['errQ'];
-            echo '<div id="alert-message" class="row">
+            <?= '<div id="alert-message" class="row">
                             <div class="col m12">
                                 <div class="card red lighten-5">
                                     <div class="card-content notif">
@@ -106,12 +106,12 @@ if (empty($_SESSION['admin'])) {
                                     </div>
                                 </div>
                             </div>
-                        </div>';
+                        </div>' ?>;
             unset($_SESSION['errQ']);
         }
         if (isset($_SESSION['errEmpty'])) {
             $errEmpty = $_SESSION['errEmpty'];
-            echo '<div id="alert-message" class="row">
+            <?= '<div id="alert-message" class="row">
                             <div class="col m12">
                                 <div class="card red lighten-5">
                                     <div class="card-content notif">
@@ -119,7 +119,7 @@ if (empty($_SESSION['admin'])) {
                                     </div>
                                 </div>
                             </div>
-                        </div>';
+                        </div>' ?>;
             unset($_SESSION['errEmpty']);
         }
         ?>
