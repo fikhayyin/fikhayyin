@@ -145,7 +145,6 @@ function restore($host, $user, $pass, $dbname, $file){
     $koneksi = mysqli_connect($host, $user, $pass, $dbname);
 
     $nama_file	= $file['name'];
-    $ukrn_file	= $file['size'];
     $tmp_file	= $file['tmp_name'];
 
     if($nama_file == "" || $_REQUEST['password'] == ""){
