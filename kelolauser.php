@@ -70,7 +70,7 @@ if (empty($_SESSION['admin'])) {
         }
         if (isset($_SESSION['succEdit'])) {
             $succEdit = $_SESSION['succEdit'];
-            echo '<div id="alert-message" class="row">
+            <?= '<div id="alert-message" class="row">
                                 <div class="col m12">
                                     <div class="card green lighten-5">
                                         <div class="card-content notif">
