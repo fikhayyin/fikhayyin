@@ -8,17 +8,17 @@ if (empty($_SESSION['admin'])) {
 } else {
 
     if ($_REQUEST['id_user'] == 1) {
-        echo '<script language="javascript">
+        <?= '<script language="javascript">
                     window.alert("ERROR! Super Admin tidak boleh diedit");
                     window.location.href="./admin.php?page=kel&sub=usr";
-                  </script>';
+                  </script>' ?>;
     } else {
 
         if ($_REQUEST['id_user'] == $_SESSION['id_user']) {
-            echo '<script language="javascript">
+            <?= '<script language="javascript">
                         window.alert("ERROR! Anda tidak diperbolehkan mengedit tipe akun Anda sendiri. Hubungi super admin untuk mengeditnya");
                         window.location.href="./admin.php?page=kel&sub=usr";
-                      </script>';
+                      </script>' ?>;
         } else {
 
             if (isset($_REQUEST['submit'])) {
@@ -28,15 +28,15 @@ if (empty($_SESSION['admin'])) {
                 $password = $_REQUEST['password'];
 
                 if ($id_user == $_SESSION['id_user']) {
-                    echo '<script language="javascript">
+                    <?= '<script language="javascript">
                                 window.alert("ERROR! Anda tidak boleh mengedit akun Anda sendiri. Hubungi super admin untuk mengeditnya");
                                 window.location.href="./admin.php?page=kel&sub=usr";
-                              </script>';
+                              </script>' ?>;
                 } else {
 
                     if (!preg_match("/^[2-3]*$/", $admin)) {
                         $_SESSION['tipeuser'] = 'Form Tipe User hanya boleh mengandung karakter angka 2 atau 3';
-                        echo '<script language="javascript">window.history.back();</script>';
+                        <?= '<script language="javascript">window.history.back();</script>' ?>;
                     } else {
                         if (isset($_REQUEST['password'])) {
                             $query = mysqli_query($config, "UPDATE user SET admin='$admin' AND password=MD5('$password') WHERE id_user='$id_user'");
@@ -49,9 +49,9 @@ if (empty($_SESSION['admin'])) {
                             die();
                         } else {
                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                            echo '<script language="javascript">
+                            <?= '<script language="javascript">
                                         window.location.href="./admin.php?page=kel&sub=usr&act=edit&id_user=' . $id_user . '";
-                                      </script>';
+                                      </script>' ?>;
                         }
                     }
                 }
@@ -82,7 +82,7 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['errQ'])) {
                             $errQ = $_SESSION['errQ'];
-                            echo '<div id="alert-message" class="row">
+                            <?= '<div id="alert-message" class="row">
                                         <div class="col m12">
                                             <div class="card red lighten-5">
                                                 <div class="card-content notif">
@@ -90,7 +90,7 @@ if (empty($_SESSION['admin'])) {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>';
+//                                     </div>' ?>;
                             unset($_SESSION['errQ']);
                         }
                         ?>
@@ -137,7 +137,7 @@ if (empty($_SESSION['admin'])) {
                                         <?php
                                         if (isset($_SESSION['tipeuser'])) {
                                             $tipeuser = $_SESSION['tipeuser'];
-                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $tipeuser . '</div>';
+                                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $tipeuser . '</div>' ?>;
                                             unset($_SESSION['tipeuser']);
                                         }
                                         ?>
