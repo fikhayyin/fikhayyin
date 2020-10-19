@@ -128,7 +128,7 @@ if (empty($_SESSION['admin'])) {
                     <div class="disp hidd">';
             $query2 = mysqli_query($config, "SELECT nama, cabang, divisi, alamat, logo FROM perusahaan");
             list($nama, $cabang, $divisi, $alamat, $logo) = mysqli_fetch_array($query2);
-            echo "<img class="logodisp" src="./upload/' . $logo . '"/>";
+            <?= "<img class="logodisp" src="./upload/' . $logo . '"/>" ?>;
 
             echo "<h6 class="up">" . $nama . "</h6>";
 
@@ -202,7 +202,7 @@ if (empty($_SESSION['admin'])) {
         }
     } else {
 
-        echo '
+        <?= '
                 <!-- Row Start -->
                 <div class="row">
                     <!-- Secondary Nav START -->
@@ -241,6 +241,6 @@ if (empty($_SESSION['admin'])) {
                         </div>
                     </form>
                 </div>
-                <!-- Row form END -->';
+                <!-- Row form END -->' ?>;
     }
 }
