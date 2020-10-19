@@ -32,7 +32,7 @@ if (empty($_SESSION['admin'])) {
         }
 
         $query = mysqli_query($config, "SELECT * FROM user LIMIT $curr, $limit");
-        echo '<!-- Row Start -->
+        <?= '<!-- Row Start -->
                     <div class="row">
                         <!-- Secondary Nav START -->
                         <div class="col s12">
@@ -53,11 +53,11 @@ if (empty($_SESSION['admin'])) {
                         </div>
                         <!-- Secondary Nav END -->
                     </div>
-                    <!-- Row END -->';
+                    <!-- Row END -->' ?>;
 
         if (isset($_SESSION['succAdd'])) {
             $succAdd = $_SESSION['succAdd'];
-            echo '<div id="alert-message" class="row">
+            <?= '<div id="alert-message" class="row">
                                 <div class="col m12">
                                     <div class="card green lighten-5">
                                         <div class="card-content notif">
@@ -78,12 +78,12 @@ if (empty($_SESSION['admin'])) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>';
+                            </div>' ?>;
             unset($_SESSION['succEdit']);
         }
         if (isset($_SESSION['succDel'])) {
             $succDel = $_SESSION['succDel'];
-            echo '<div id="alert-message" class="row">
+            <?= '<div id="alert-message" class="row">
                                 <div class="col m12">
                                     <div class="card green lighten-5">
                                         <div class="card-content notif">
@@ -91,11 +91,11 @@ if (empty($_SESSION['admin'])) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>';
+                            </div>' ?>;
             unset($_SESSION['succDel']);
         }
 
-        echo '
+        <?= '
                     <!-- Row form Start -->
                     <div class="row jarak-form">
 
@@ -111,14 +111,14 @@ if (empty($_SESSION['admin'])) {
                                         <th width="16%">Tindakan</th>
                                     </tr>
                                 </thead>
-                                <tbody>';
+                                <tbody>' ?>;
 
         if (mysqli_num_rows($query) > 0) {
             $no = 1;
             while ($row = mysqli_fetch_array($query)) {
-                echo '
+                <?= '
                                     <tr>
-                                    <td>' . $no++ . '</td>';
+                                    <td>' . $no++ . '</td>' ?>;
 
                 if ($row['admin'] == 1) {
                     $row['admin'] = 'Super Admin';
@@ -127,35 +127,35 @@ if (empty($_SESSION['admin'])) {
                 } else {
                     $row['admin'] = 'Staff';
                 }
-                echo '<td>' . $row['username'] . '</td>
+                <?= '<td>' . $row['username'] . '</td>
                                             <td>' . $row['nama'] . '<br/>' . $row['nip'] . '</td>
                                             <td>' . $row['admin'] . '</td>
-                                            <td>';
+                                            <td>' ?>;
 
                 if ($_SESSION['username'] == $row['username']) {
-                    echo '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>';
+                    <?= '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>' ?>;
                 } else {
 
                     if ($row['id_user'] == 1 || $_SESSION['admin'] == 2) {
-                        echo '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>';
+                        <?= '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>' ?>;
                     } else {
-                        echo ' <a class="btn small blue waves-effect waves-light" href="?page=kel&sub=usr&act=edit&id_user=' . $row['id_user'] . '">
+                        <?= ' <a class="btn small blue waves-effect waves-light" href="?page=kel&sub=usr&act=edit&id_user=' . $row['id_user'] . '">
                                                  <i class="material-icons">edit</i> EDIT</a>
-                                                 <a class="btn small deep-orange waves-effect waves-light" href="?page=kel&sub=usr&act=del&id_user=' . $row['id_user'] . '"><i class="material-icons">delete</i> DEL</a>';
+                                                 <a class="btn small deep-orange waves-effect waves-light" href="?page=kel&sub=usr&act=del&id_user=' . $row['id_user'] . '"><i class="material-icons">delete</i> DEL</a>' ?>;
                     }
                 }
                 echo '</td>
                                     </tr>';
             }
         } else {
-            echo '<tr><td colspan="5"><center><p class="add">Tidak ada data untuk ditampilkan</p></center></td></tr>';
+            <?= '<tr><td colspan="5"><center><p class="add">Tidak ada data untuk ditampilkan</p></center></td></tr>' ?>;
         }
-        echo '</tbody></table>
+        <?= '</tbody></table>
                             <!-- Table END -->
                         </div>
 
                     </div>
-                    <!-- Row form END -->';
+                    <!-- Row form END -->' ?>;
 
         $query = mysqli_query($config, "SELECT * FROM user");
         $cdata = mysqli_num_rows($query);
@@ -168,29 +168,29 @@ if (empty($_SESSION['admin'])) {
 
             if ($pg > 1) {
                 $prev = $pg - 1;
-                echo '<li><a href="?page=kel&sub=usr&pg=1"><i class="material-icons md-48">first_page</i></a></li>
-                                  <li><a href="?page=kel&sub=usr&pg=' . $prev . '"><i class="material-icons md-48">chevron_left</i></a></li>';
+                <?= '<li><a href="?page=kel&sub=usr&pg=1"><i class="material-icons md-48">first_page</i></a></li>
+                                  <li><a href="?page=kel&sub=usr&pg=' . $prev . '"><i class="material-icons md-48">chevron_left</i></a></li>' ?>;
             } else {
-                echo '<li class="disabled"><a href="#"><i class="material-icons md-48">first_page</i></a></li>
-                                  <li class="disabled"><a href="#"><i class="material-icons md-48">chevron_left</i></a></li>';
+                <?= '<li class="disabled"><a href="#"><i class="material-icons md-48">first_page</i></a></li>
+                                  <li class="disabled"><a href="#"><i class="material-icons md-48">chevron_left</i></a></li>' ?>;
             }
 
             //perulangan pagging
             for ($i = 1; $i <= $cpg; $i++)
                 if ($i != $pg) {
-                    echo '<li class="waves-effect waves-dark"><a href="?page=kel&sub=usr&pg=' . $i . '"> ' . $i . ' </a></li>';
+                    <?= '<li class="waves-effect waves-dark"><a href="?page=kel&sub=usr&pg=' . $i . '"> ' . $i . ' </a></li>' ?>;
                 } else {
-                    echo '<li class="active waves-effect waves-dark"><a href="?page=kel&sub=usr&pg=' . $i . '"> ' . $i . ' </a></li>';
+                    <?= '<li class="active waves-effect waves-dark"><a href="?page=kel&sub=usr&pg=' . $i . '"> ' . $i . ' </a></li>' ?>;
                 }
 
             //last and next pagging
             if ($pg < $cpg) {
                 $next = $pg + 1;
-                echo '<li><a href="?page=kel&sub=usr&pg=' . $next . '"><i class="material-icons md-48">chevron_right</i></a></li>
-                                  <li><a href="?page=kel&sub=usr&pg=' . $cpg . '"><i class="material-icons md-48">last_page</i></a></li>';
+                <?= '<li><a href="?page=kel&sub=usr&pg=' . $next . '"><i class="material-icons md-48">chevron_right</i></a></li>
+                                  <li><a href="?page=kel&sub=usr&pg=' . $cpg . '"><i class="material-icons md-48">last_page</i></a></li>' ?>;
             } else {
-                echo '<li class="disabled"><a href="#"><i class="material-icons md-48">chevron_right</i></a></li>
-                                  <li class="disabled"><a href="#"><i class="material-icons md-48">last_page</i></a></li>';
+                <?= '<li class="disabled"><a href="#"><i class="material-icons md-48">chevron_right</i></a></li>
+                                  <li class="disabled"><a href="#"><i class="material-icons md-48">last_page</i></a></li>' ?>;
             }
             echo ' </ul>
                                    <!-- Pagination END -->';
