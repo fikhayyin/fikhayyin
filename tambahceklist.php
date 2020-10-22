@@ -14,7 +14,7 @@ if (empty($_SESSION['admin'])) {
             || $_REQUEST['tipe'] == "" || $_REQUEST['tgl_lpr'] == ""  || $_REQUEST['keterangan'] == ""
         ) {
             $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
-            echo '<script language="javascript">window.history.back();</script>';
+            <?= '<script language="javascript">window.history.back();</script>' ?>;
         } else {
 
             $no_cek = $_REQUEST['no_cek'];
@@ -196,7 +196,7 @@ if (empty($_SESSION['admin'])) {
                         $sql = mysqli_query($config, "SELECT no_cek FROM checklist");
                         $no_cek = "1";
                         if (mysqli_num_rows($sql) == 0) {
-                            echo $no_cek;
+                            return $no_cek;
                         }
 
                         $result = mysqli_num_rows($sql);
@@ -204,10 +204,10 @@ if (empty($_SESSION['admin'])) {
                         while (list($no_cek) = mysqli_fetch_array($sql)) {
                             if (++$counter == $result) {
                                 $no_cek++;
-                                echo $no_cek;
+                                return $no_cek;
                             }
                         }
-                        echo '" required>';
+                        return '" required>';
 
                         if (isset($_SESSION['no_cekk'])) {
                             $no_cekk = $_SESSION['no_cekk'];
@@ -222,7 +222,7 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['tipek'])) {
                             $tipek = $_SESSION['tipek'];
-                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $tipek . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $tipek . '</div>' ?>;
                             unset($_SESSION['tipek']);
                         }
                         ?>
@@ -233,7 +233,7 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['hasil'])) {
                             $hasil = $_SESSION['hasil'];
-                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $hasil . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $hasil . '</div>' ?>;
                             unset($_SESSION['hasil']);
                         }
                         ?>
@@ -244,12 +244,12 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['areak'])) {
                             $areak = $_SESSION['areak'];
-                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $areak . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $areak . '</div>' ?>;
                             unset($_SESSION['areak']);
                         }
                         if (isset($_SESSION['errDup'])) {
                             $errDup = $_SESSION['errDup'];
-                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errDup . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errDup . '</div>' ?>;
                             unset($_SESSION['errDup']);
                         }
                         ?>
@@ -260,7 +260,7 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['tgl_lprk'])) {
                             $tgl_lprk = $_SESSION['tgl_lprk'];
-                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $tgl_lprk . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $tgl_lprk . '</div>' ?>;
                             unset($_SESSION['tgl_lprk']);
                         }
                         ?>
@@ -271,7 +271,7 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['keterangank'])) {
                             $keterangank = $_SESSION['keterangank'];
-                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $keterangank . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $keterangank . '</div>' ?>;
                             unset($_SESSION['keterangank']);
                         }
                         ?>
@@ -283,7 +283,7 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['nama_cekk'])) {
                             $nama_cekk = $_SESSION['nama_cekk'];
-                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $nama_cekk . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $nama_cekk . '</div>' ?>;
                             unset($_SESSION['nama_cekk']);
                         }
                         ?>
@@ -300,12 +300,12 @@ if (empty($_SESSION['admin'])) {
                                 <?php
                                 if (isset($_SESSION['errSize'])) {
                                     $errSize = $_SESSION['errSize'];
-                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errSize . '</div>';
+                                    <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errSize . '</div>' ?>;
                                     unset($_SESSION['errSize']);
                                 }
                                 if (isset($_SESSION['errFormat'])) {
                                     $errFormat = $_SESSION['errFormat'];
-                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errFormat . '</div>';
+                                    <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errFormat . '</div>' ?>;
                                     unset($_SESSION['errFormat']);
                                 }
                                 ?>
