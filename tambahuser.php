@@ -184,7 +184,7 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['nipuser'])) {
                             $nipuser = $_SESSION['nipuser'];
-                            echo "<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">" . $nipuser . "</div>";
+                            <?= "<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">" . $nipuser . "</div>" ?>;
                             unset($_SESSION['nipuser']);
                         }
                         ?>
@@ -211,7 +211,7 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['tipeuser'])) {
                             $tipeuser = $_SESSION['tipeuser'];
-                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $tipeuser . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $tipeuser . '</div>' ?>;
                             unset($_SESSION['tipeuser']);
                         }
                         ?>
