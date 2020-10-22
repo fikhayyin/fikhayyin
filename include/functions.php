@@ -6,7 +6,7 @@ date_default_timezone_set("Asia/Jakarta");
  */
 function conn($host, $username, $password, $database)
 {
-    $conn = mysqli_connect($host, $username, $password, $database);
+    $conn = mysql_connect($host, $username, $password, $database);
 
     // Menampilkan pesan error jika database tidak terhubung
     return ($conn) ? $conn : "Koneksi database gagal: " . mysqli_connect_error();
@@ -75,13 +75,13 @@ function backup($host, $user, $pass, $dbname, $nama_file, $tables){
 
     //untuk koneksi database
     $return = "";
-    $link = mysqli_connect($host, $user, $pass, $dbname);
+    $link = mysql_connect($host, $user, $pass, $dbname);
 
     //backup semua tabel database
     if($tables == '*'){
         $tables = array();
-        $result = mysqli_query($link, 'SHOW TABLES');
-        while($row = mysqli_fetch_row($result)){
+        $result = mysql_query($link, 'SHOW TABLES');
+        while($row = mysql_fetch_row($result)){
             $tables[] = $row[0];
         }
     } else {
@@ -92,8 +92,8 @@ function backup($host, $user, $pass, $dbname, $nama_file, $tables){
 
     //looping table
     foreach($tables as $table){
-        $result = mysqli_query($link, 'SELECT * FROM '.$table);
-        $num_fields = mysqli_num_fields($result);
+        $result = mysql_query($link, 'SELECT * FROM '.$table);
+        $num_fields = mysql_num_fields($result);
 
         $return.= 'DROP TABLE '.$table.';';
         $row2 = mysqli_fetch_row(mysqli_query($link, 'SHOW CREATE TABLE '.$table));
@@ -104,7 +104,11 @@ function backup($host, $user, $pass, $dbname, $nama_file, $tables){
             while($row = mysqli_fetch_row($result)){
                 $return.= 'INSERT INTO '.$table.' VALUES(';
 
-                for($j=0; $j<$num_fields; $j++){
+                for($j=0; $j
+                    
+                    
+                    
+                    <$num_fields; $j++){
                     $row[$j] = addslashes($row[$j]);
                     $row[$j] = str_replace("\n","\n",$row[$j]);
 
@@ -142,7 +146,7 @@ function restore($host, $user, $pass, $dbname, $file){
     global $rest_dir;
 
     //konfigurasi restore database: host, user, password, database
-    $koneksi = mysqli_connect($host, $user, $pass, $dbname);
+    $koneksi = mysql_connect($host, $user, $pass, $dbname);
 
     $nama_file	= $file['name'];
     $tmp_file	= $file['tmp_name'];
@@ -156,7 +160,7 @@ function restore($host, $user, $pass, $dbname, $file){
         $password = $_REQUEST['password'];
         $id_user = $_SESSION['id_user'];
 
-        $query = mysqli_query($koneksi, "SELECT password FROM tbl_user WHERE id_user='$id_user' AND password=MD5('$password')");
+        $query = mysql_query($koneksi, "SELECT password FROM tbl_user WHERE id_user='$id_user' AND password=MD5('$password')");
         if(mysqli_num_rows($query) > 0){
 
             $alamatfile	= $rest_dir.$nama_file;
@@ -182,7 +186,7 @@ function restore($host, $user, $pass, $dbname, $file){
                         $templine .= $line;
 
                         if(substr(trim($line), -1, 1) == ';'){
-                            mysqli_query($koneksi, $templine);
+                            mysql_query($koneksi, $templine);
                             $templine = '';
                         }
                     }
