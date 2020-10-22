@@ -6,11 +6,11 @@ if (empty($_SESSION['admin'])) {
     die();
 } else {
 
-    $id_cek = mysqli_real_escape_string($config, $_REQUEST['id_cek']);
-    $query = mysqli_query($config, "SELECT * FROM checklist WHERE id_cek='$id_cek'");
-    if (mysqli_num_rows($query) > 0) {
-        while ($row = mysqli_fetch_array($query)) {
-            echo '
+    $id_cek = mysql_real_escape_string($config, $_REQUEST['id_cek']);
+    $query = mysql_query($config, "SELECT * FROM checklist WHERE id_cek='$id_cek'");
+    if (mysql_num_rows($query) > 0) {
+        while ($row = mysql_fetch_array($query)) {
+            <?= '
                     <div class="row jarak-form">
                         <ul class="collapsible white" data-collapsible="accordion">
                             <li>
@@ -58,10 +58,10 @@ if (empty($_SESSION['admin'])) {
                                         </div>
                                 </div>
 
-                        <button onclick="window.history.back()" class="btn-large blue waves-effect waves-light left"><i class="material-icons">arrow_back</i> KEMBALI</button>';
+                        <button onclick="window.history.back()" class="btn-large blue waves-effect waves-light left"><i class="material-icons">arrow_back</i> KEMBALI</button>' ?>;
 
             if (empty($row['file'])) {
-                echo '';
+                return '';
             } else {
 
                 $ekstensi = array('pdf');
@@ -71,11 +71,11 @@ if (empty($_SESSION['admin'])) {
                 $eks = strtolower(end($x));
 
                 if (in_array($eks, $ekstensi) == true) {
-                    echo '<img class="gbr" data-caption="' . date('d M Y', strtotime($row['tgl_catat'])) . '" src="./upload/ceklist/' . $row['file'] . '"/>';
+                    <?= '<img class="gbr" data-caption="' . date('d M Y', strtotime($row['tgl_catat'])) . '" src="./upload/ceklist/' . $row['file'] . '"/>' ?>;
                 } else {
 
                     if (in_array($eks, $ekstensi2) == true) {
-                        echo '
+                        <?= '
                                     <div class="gbr">
                                         <div class="row">
                                             <div class="col s12">
@@ -95,9 +95,9 @@ if (empty($_SESSION['admin'])) {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>';
+                                    </div>' ?>;
                     } else {
-                        echo '
+                        <?= '
                                     <div class="gbr">
                                         <div class="row">
                                             <div class="col s12">
@@ -117,11 +117,11 @@ if (empty($_SESSION['admin'])) {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>';
+                                    </div>' ?>;
                     }
                 }
             }
-            echo '
+            return '
                     </div>';
         }
     }
