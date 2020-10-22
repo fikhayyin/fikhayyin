@@ -14,7 +14,7 @@ if (empty($_SESSION['admin'])) {
             || $_REQUEST['merk_brg'] == "" || $_REQUEST['tipe'] == "" || $_REQUEST['tgl_brg'] == ""  || $_REQUEST['keterangan'] == ""
         ) {
             $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
-            echo '<script language="javascript">window.history.back();</script>';
+            <?= '<script language="javascript">window.history.back();</script>' ?>;
         } else {
 
             $no_brg = $_REQUEST['no_brg'];
@@ -31,42 +31,42 @@ if (empty($_SESSION['admin'])) {
             //validasi input data
             if (!preg_match("/^[0-9]*$/", $no_brg)) {
                 $_SESSION['eno_brg'] = 'Form Nomor Equipment harus diisi angka!';
-                echo '<script language="javascript">window.history.back();</script>';
+                <?= '<script language="javascript">window.history.back();</script>' ?>;
             } else {
 
                 if (!preg_match("/^[a-zA-Z0-9.\/ , -]*$/", $lokasi_brg)) {
                     $_SESSION['elokasi_brg'] = 'Form lokasi Equipment hanya boleh mengandung karakter huruf, angka, spasi,koma(,), titik(.), minus(-) dan garis miring(/)';
-                    echo '<script language="javascript">window.history.back();</script>';
+                    <?= '<script language="javascript">window.history.back();</script>' ?>;
                 } else {
 
                     if (!preg_match("/^[a-zA-Z0-9.,() \/ -]*$/", $jumlah_brg)) {
-                        $_SESSION['ejumlah_brg'] = 'Form Jumlah Equipment hanya boleh diisi huruf dan angka';
-                        echo '<script language="javascript">window.history.back();</script>';
+                        $_SESSION['ejumlah_brg'] = 'Form Jumlah Equipment hanya boleh diisi huruf dan angka' ?>;
+                        <?= '<script language="javascript">window.history.back();</script>';
                     } else {
 
                         if (!preg_match("/^[a-zA-Z0-9.,_()%&@\/\r\n -]*$/", $nama_brg)) {
                             $_SESSION['enama_brg'] = 'Form nama_brg hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), underscore(_), dan(&) persen(%) dan at(@)';
-                            echo '<script language="javascript">window.history.back();</script>';
+                            <?= '<script language="javascript">window.history.back();</script>' ?>;
                         } else {
 
                             if (!preg_match("/^[a-zA-Z0-9., ]*$/", $nmerk_brg)) {
                                 $_SESSION['emerk_brg'] = 'Form merk_brg hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,)';
-                                echo '<script language="javascript">window.history.back();</script>';
+                                <?= '<script language="javascript">window.history.back();</script>' ?>;
                             } else {
 
                                 if (!preg_match("/^[a-zA-Z0-9., -]*$/", $tipe)) {
                                     $_SESSION['etipe'] = 'Form tipe hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,) dan minus (-)';
-                                    echo '<script language="javascript">window.history.back();</script>';
+                                    <?= '<script language="javascript">window.history.back();</script>' ?>;
                                 } else {
 
                                     if (!preg_match("/^[0-9.-]*$/", $tgl_brg)) {
                                         $_SESSION['etgl_brg'] = 'Form Tanggal penerimaan Equipment hanya boleh mengandung angka dan minus(-)';
-                                        echo '<script language="javascript">window.history.back();</script>';
+                                        <?= '<script language="javascript">window.history.back();</script>' ?>;
                                     } else {
 
                                         if (!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $keterangan)) {
                                             $_SESSION['eketerangan'] = 'Form Keterangan hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()';
-                                            echo '<script language="javascript">window.history.back();</script>';
+                                            <?= '<script language="javascript">window.history.back();</script>' ?>;
                                         } else {
 
 
@@ -85,8 +85,8 @@ if (empty($_SESSION['admin'])) {
                                                     if ($ukuran < 2300000) {
 
                                                         $id_brg = $_REQUEST['id_brg'];
-                                                        $query = mysqli_query($config, "SELECT file FROM barang WHERE id_brg='$id_brg'");
-                                                        list($file) = mysqli_fetch_array($query);
+                                                        $query = mysql_query($config, "SELECT file FROM barang WHERE id_brg='$id_brg'");
+                                                        list($file) = mysql_fetch_array($query);
 
                                                         //jika file tidak kosong akan mengeksekusi script dibawah ini
                                                         if (!empty($file)) {
@@ -94,7 +94,7 @@ if (empty($_SESSION['admin'])) {
 
                                                             move_uploaded_file($_FILES['file']['tmp_name'], $target_dir . $nfile);
 
-                                                            $query = mysqli_query($config, "UPDATE barang SET no_brg='$no_brg',lokasi_brg='$lokasi_brg',jumlah_brg='$jumlah_brg',nama_brg='$nama_brg',merk_brg='$nmerk_brg',tipe='$tipe',tgl_brg='$tgl_brg',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_brg='$id_brg'");
+                                                            $query = mysql_query($config, "UPDATE barang SET no_brg='$no_brg',lokasi_brg='$lokasi_brg',jumlah_brg='$jumlah_brg',nama_brg='$nama_brg',merk_brg='$nmerk_brg',tipe='$tipe',tgl_brg='$tgl_brg',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_brg='$id_brg'");
 
                                                             if ($query == true) {
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
@@ -102,14 +102,14 @@ if (empty($_SESSION['admin'])) {
                                                                 die();
                                                             } else {
                                                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                                echo '<script language="javascript">window.history.back();</script>';
+                                                                <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                             }
                                                         } else {
 
                                                             //jika file kosong akan mengeksekusi script dibawah ini
                                                             move_uploaded_file($_FILES['file']['tmp_name'], $target_dir . $nfile);
 
-                                                            $query = mysqli_query($config, "UPDATE barang SET no_brg='$no_brg',lokasi_brg='$lokasi_brg',jumlah_brg='$jumlah_brg',nama_brg='$nama_brg',merk_brg='$nmerk_brg',tipe='$tipe',tgl_brg='$tgl_brg',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_brg='$id_brg'");
+                                                            $query = mysql_query($config, "UPDATE barang SET no_brg='$no_brg',lokasi_brg='$lokasi_brg',jumlah_brg='$jumlah_brg',nama_brg='$nama_brg',merk_brg='$nmerk_brg',tipe='$tipe',tgl_brg='$tgl_brg',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_brg='$id_brg'");
 
                                                             if ($query == true) {
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
@@ -117,23 +117,23 @@ if (empty($_SESSION['admin'])) {
                                                                 die();
                                                             } else {
                                                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                                echo '<script language="javascript">window.history.back();</script>';
+                                                                <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                             }
                                                         }
                                                     } else {
                                                         $_SESSION['errSize'] = 'Ukuran file yang diupload terlalu besar!';
-                                                        echo '<script language="javascript">window.history.back();</script>';
+                                                        <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                     }
                                                 } else {
                                                     $_SESSION['errFormat'] = 'Format file yang diperbolehkan hanya *.JPG, *.PNG, *.DOC, *.DOCX atau *.PDF!';
-                                                    echo '<script language="javascript">window.history.back();</script>';
+                                                    <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                 }
                                             } else {
 
                                                 //jika form file kosong akan mengeksekusi script dibawah ini
                                                 $id_brg = $_REQUEST['id_brg'];
 
-                                                $query = mysqli_query($config, "UPDATE barang SET no_brg='$no_brg',lokasi_brg='$lokasi_brg',jumlah_brg='$jumlah_brg',nama_brg='$nama_brg',merk_brg='$nmerk_brg',tipe='$tipe',tgl_brg='$tgl_brg',keterangan='$keterangan',id_user='$id_user' WHERE id_brg='$id_brg'");
+                                                $query = mysql_query($config, "UPDATE barang SET no_brg='$no_brg',lokasi_brg='$lokasi_brg',jumlah_brg='$jumlah_brg',nama_brg='$nama_brg',merk_brg='$nmerk_brg',tipe='$tipe',tgl_brg='$tgl_brg',keterangan='$keterangan',id_user='$id_user' WHERE id_brg='$id_brg'");
 
                                                 if ($query == true) {
                                                     $_SESSION['succEdit'] = 'SUKSES! Equipment berhasil diupdate';
@@ -141,7 +141,7 @@ if (empty($_SESSION['admin'])) {
                                                     die();
                                                 } else {
                                                     $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                    echo '<script language="javascript">window.history.back();</script>';
+                                                    <?= '<script language="javascript">window.history.back();</script>' ?>;
                                                 }
                                             }
                                         }
@@ -155,15 +155,15 @@ if (empty($_SESSION['admin'])) {
         }
     } else {
 
-        $id_brg = mysqli_real_escape_string($config, $_REQUEST['id_brg']);
-        $query = mysqli_query($config, "SELECT id_brg, no_brg, lokasi_brg, jumlah_brg, nama_brg, merk_brg, tipe, tgl_brg, keterangan, id_user FROM barang WHERE id_brg='$id_brg'");
+        $id_brg = mysql_real_escape_string($config, $_REQUEST['id_brg']);
+        $query = mysql_query($config, "SELECT id_brg, no_brg, lokasi_brg, jumlah_brg, nama_brg, merk_brg, tipe, tgl_brg, keterangan, id_user FROM barang WHERE id_brg='$id_brg'");
         list($id_brg, $no_brg, $lokasi_brg, $jumlah_brg, $nama_brg, $merk_brg, $tipe, $tgl_brg, $keterangan, $id_user) = mysqli_fetch_array($query);
 
         if ($_SESSION['id_user'] != $id_user and $_SESSION['id_user'] != 1 and $_SESSION['id_user'] != 2) {
-            echo '<script language="javascript">
+            <?= '<script language="javascript">
                     window.alert("ERROR! Anda tidak memiliki hak akses untuk mengedit data ini");
                     window.location.href="./admin.php?page=ibm";
-                  </script>';
+                  </script>' ?>;
         } else { ?>
 
             <!-- Row Start -->
@@ -185,7 +185,7 @@ if (empty($_SESSION['admin'])) {
             <?php
             if (isset($_SESSION['errQ'])) {
                 $errQ = $_SESSION['errQ'];
-                echo '<div id="alert-message" class="row">
+                <?= '<div id="alert-message" class="row">
                             <div class="col m12">
                                 <div class="card red lighten-5">
                                     <div class="card-content notif">
@@ -193,12 +193,12 @@ if (empty($_SESSION['admin'])) {
                                     </div>
                                 </div>
                             </div>
-                        </div>';
+                        </div>' ?>;
                 unset($_SESSION['errQ']);
             }
             if (isset($_SESSION['errEmpty'])) {
                 $errEmpty = $_SESSION['errEmpty'];
-                echo '<div id="alert-message" class="row">
+                <?= '<div id="alert-message" class="row">
                             <div class="col m12">
                                 <div class="card red lighten-5">
                                     <div class="card-content notif">
@@ -206,7 +206,7 @@ if (empty($_SESSION['admin'])) {
                                     </div>
                                 </div>
                             </div>
-                        </div>';
+                        </div>' ?>;
                 unset($_SESSION['errEmpty']);
             }
             ?>
@@ -225,7 +225,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['eno_brg'])) {
                                 $eno_brg = $_SESSION['eno_brg'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $eno_brg . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $eno_brg . '</div>' ?>;
                                 unset($_SESSION['eno_brg']);
                             }
                             ?>
@@ -236,7 +236,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['emerk_brg'])) {
                                 $emerk_brg = $_SESSION['emerk_brg'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $emerk_brg . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $emerk_brg . '</div>' ?>;
                                 unset($_SESSION['emerk_brg']);
                             }
                             ?>
@@ -247,7 +247,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['ejumlah_brg'])) {
                                 $ejumlah_brg = $_SESSION['ejumlah_brg'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $ejumlah_brg . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $ejumlah_brg . '</div>' ?>;
                                 unset($_SESSION['ejumlah_brg']);
                             }
                             ?>
@@ -258,7 +258,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['etipe'])) {
                                 $etipe = $_SESSION['etipe'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $etipe . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $etipe . '</div>' ?>;
                                 unset($_SESSION['etipe']);
                             }
                             ?>
@@ -269,7 +269,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['elokasi_brg'])) {
                                 $elokasi_brg = $_SESSION['elokasi_brg'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $elokasi_brg . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $elokasi_brg . '</div>' ?>;
                                 unset($_SESSION['elokasi_brg']);
                             }
                             ?>
@@ -280,7 +280,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['etgl_brg'])) {
                                 $etgl_brg = $_SESSION['etgl_brg'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $etgl_brg . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $etgl_brg . '</div>' ?>;
                                 unset($_SESSION['etgl_brg']);
                             }
                             ?>
@@ -291,7 +291,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['enama_brg'])) {
                                 $enama_brg = $_SESSION['enama_brg'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $enama_brg . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $enama_brg . '</div>' ?>;
                                 unset($_SESSION['enama_brg']);
                             }
                             ?>
@@ -302,7 +302,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['eketerangan'])) {
                                 $eketerangan = $_SESSION['eketerangan'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $eketerangan . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $eketerangan . '</div>' ?>;
                                 unset($_SESSION['eketerangan']);
                             }
                             ?>
