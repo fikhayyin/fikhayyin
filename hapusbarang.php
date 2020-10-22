@@ -8,7 +8,7 @@ if (empty($_SESSION['admin'])) {
 
     if (isset($_SESSION['errQ'])) {
         $errQ = $_SESSION['errQ'];
-        echo '<div id="alert-message" class="row jarak-card">
+        <?= '<div id="alert-message" class="row jarak-card">
                     <div class="col m12">
                         <div class="card red lighten-5">
                             <div class="card-content notif">
@@ -16,7 +16,7 @@ if (empty($_SESSION['admin'])) {
                             </div>
                         </div>
                     </div>
-                </div>';
+                </div>' ?>;
         unset($_SESSION['errQ']);
     }
 
@@ -28,13 +28,13 @@ if (empty($_SESSION['admin'])) {
         while ($row = mysqli_fetch_array($query)) {
 
             if ($_SESSION['id_user'] != $row['id_user'] and $_SESSION['id_user'] != 1 and $_SESSION['id_user'] != 2) {
-                echo '<script language="javascript">
+                <?= '<script language="javascript">
                         window.alert("ERROR! Anda tidak memiliki hak akses untuk menghapus data ini");
                         window.location.href="./admin.php?page=ibm";
-                      </script>';
+                      </script>' ?>;
             } else {
 
-                echo '
+                <?= '
                 <!-- Row form Start -->
 				<div class="row jarak-card">
 				    <div class="col m12">
@@ -97,7 +97,7 @@ if (empty($_SESSION['admin'])) {
     	            </div>
                 </div>
             </div>
-            <!-- Row form END -->';
+            <!-- Row form END -->' ?>;
 
                 if (isset($_REQUEST['submit'])) {
                     $id_brg = $_REQUEST['id_brg'];
@@ -105,8 +105,8 @@ if (empty($_SESSION['admin'])) {
                     //jika ada file akan mengekseskusi script dibawah ini
                     if (!empty($row['file'])) {
                         unlink('upload/' . $row['file']);
-                        $query = mysqli_query($config, "DELETE FROM barang WHERE id_brg='$id_brg'");
-                        $query2 = mysqli_query($config, "DELETE FROM tbl_disposisi WHERE id_brg='$id_brg'");
+                        $query = mysql_query($config, "DELETE FROM barang WHERE id_brg='$id_brg'");
+                        $query2 = mysql_query($config, "DELETE FROM tbl_disposisi WHERE id_brg='$id_brg'");
 
                         if ($query == true) {
                             $_SESSION['succDel'] = 'SUKSES! Equipment berhasil dihapus<br/>';
@@ -114,15 +114,15 @@ if (empty($_SESSION['admin'])) {
                             die();
                         } else {
                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                            echo '<script language="javascript">
+                            <?= '<script language="javascript">
                                 window.location.href="./admin.php?page=ibm&act=del&id_brg=' . $id_brg . '";
-                              </script>';
+                              </script>' ?>;
                         }
                     } else {
 
                         //jika tidak ada file akan mengekseskusi script dibawah ini
-                        $query = mysqli_query($config, "DELETE FROM barang WHERE id_brg='$id_brg'");
-                        $query2 = mysqli_query($config, "DELETE FROM tbl_disposisi WHERE id_brg='$id_brg'");
+                        $query = mysql_query($config, "DELETE FROM barang WHERE id_brg='$id_brg'");
+                        $query2 = mysql_query($config, "DELETE FROM tbl_disposisi WHERE id_brg='$id_brg'");
 
                         if ($query == true) {
                             $_SESSION['succDel'] = 'SUKSES! Equipment berhasil dihapus<br/>';
@@ -130,9 +130,9 @@ if (empty($_SESSION['admin'])) {
                             die();
                         } else {
                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                            echo '<script language="javascript">
+                            <?= '<script language="javascript">
                                 window.location.href="./admin.php?page=ibm&act=del&id_brg=' . $id_brg . '";
-                              </script>';
+                              </script>' ?>;
                         }
                     }
                 }
