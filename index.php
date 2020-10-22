@@ -27,8 +27,8 @@ $config = conn($host, $username, $password, $database);
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <?php
-    $query = mysqli_query($config, "SELECT logo from perusahaan");
-    list($logo) = mysqli_fetch_array($query);
+    $query = mysql_query($config, "SELECT logo from perusahaan");
+    list($logo) = mysql_fetch_array($query);
     <?= '<link rel="shortcut icon" href="upload/' . $logo . '">' ?>;
     ?>
     <!-- Meta END -->
@@ -64,7 +64,7 @@ $config = conn($host, $username, $password, $database);
 
         @media only screen and (min-width: 993px) {
             .container {
-                width: 60% !important;
+                width: 60%;
             }
         }
 
@@ -198,16 +198,16 @@ $config = conn($host, $username, $password, $database);
                     <div class="row">
 
                         <?php
-                        $query = mysqli_query($config, "SELECT * FROM perusahaan");
-                        while ($data = mysqli_fetch_array($query)) {
+                        $query = mysql_query($config, "SELECT * FROM perusahaan");
+                        while ($data = mysql_fetch_array($query)) {
                         ?>
                             <!-- Logo and title START -->
                             <div class="col s12">
                                 <div class="card-content">
                                     <h5 class="center" id="title">Sistem Inventaris</h5>
-                                    <?php echo '<img id="logo" src="upload/' . $data['logo'] . '">'; ?>
+                                    <?php return '<img id="logo" src="upload/' . $data['logo'] . '">'; ?>
                                     <h4 class="center" id="unv">
-                                        <?php echo '' . $data['nama'] . ''; ?>
+                                        <?php return '' . $data['nama'] . ''; ?>
                                     </h4>
                                     <div class="batas"></div>
                                 </div>
@@ -229,7 +229,7 @@ $config = conn($host, $username, $password, $database);
                                 $username = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['username'])));
                                 $password = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['password'])));
 
-                                $query = mysqli_query($config, "SELECT id_user, username, nama, nip, admin FROM user WHERE username=BINARY'$username' AND password=MD5('$password')");
+                                $query = mysql_query($config, "SELECT id_user, username, nama, nip, admin FROM user WHERE username=BINARY'$username' AND password=MD5('$password')");
 
                                 if (mysqli_num_rows($query) > 0) {
                                     list($id_user, $username, $nama, $nip, $admin) = mysqli_fetch_array($query);
@@ -260,13 +260,13 @@ $config = conn($host, $username, $password, $database);
                                     <?php
                                     if (isset($_SESSION['errLog'])) {
                                         $errLog = $_SESSION['errLog'];
-                                        echo '<div id="alert-message" class="error red lighten-5"><div class="center"><i class="material-icons">error_outline</i> <strong>LOGIN GAGAL!</strong></div>
+                                        return '<div id="alert-message" class="error red lighten-5"><div class="center"><i class="material-icons">error_outline</i> <strong>LOGIN GAGAL!</strong></div>
                                     ' . $errLog . '</div>';
                                         unset($_SESSION['errLog']);
                                     }
                                     if (isset($_SESSION['err'])) {
                                         $err = $_SESSION['err'];
-                                        echo '<div id="alert-message" class="error red lighten-5"><div class="center"><i class="material-icons">error_outline</i> <strong>ERROR!</strong></div>
+                                        return '<div id="alert-message" class="error red lighten-5"><div class="center"><i class="material-icons">error_outline</i> <strong>ERROR!</strong></div>
                                     ' . $err . '</div>';
                                         unset($_SESSION['err']);
                                     }
