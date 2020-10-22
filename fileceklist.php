@@ -8,7 +8,7 @@ if (empty($_SESSION['admin'])) {
 
     $id_cek = mysql_real_escape_string($config, $_REQUEST['id_cek']);
     $query = mysql_query($config, "SELECT * FROM checklist WHERE id_cek='$id_cek'");
-    if (mysql_num_rows($query) > 0) {
+    if (mysqli_num_rows($query) > 0) {
         while ($row = mysql_fetch_array($query)) {
             <?= '
                     <div class="row jarak-form">
