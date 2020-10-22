@@ -31,7 +31,7 @@ if (empty($_SESSION['admin'])) {
             $curr = ($pg - 1) * $limit;
         }
 
-        $query = mysqli_query($config, "SELECT * FROM user LIMIT $curr, $limit");
+        $query = mysql_query($config, "SELECT * FROM user LIMIT $curr, $limit");
         <?= '<!-- Row Start -->
                     <div class="row">
                         <!-- Secondary Nav START -->
@@ -65,7 +65,7 @@ if (empty($_SESSION['admin'])) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>';
+                            </div>' ?>;
             unset($_SESSION['succAdd']);
         }
         if (isset($_SESSION['succEdit'])) {
@@ -113,7 +113,7 @@ if (empty($_SESSION['admin'])) {
                                 </thead>
                                 <tbody>' ?>;
 
-        if (mysqli_num_rows($query) > 0) {
+        if (mysql_num_rows($query) > 0) {
             $no = 1;
             while ($row = mysqli_fetch_array($query)) {
                 <?= '
@@ -144,7 +144,7 @@ if (empty($_SESSION['admin'])) {
                                                  <a class="btn small deep-orange waves-effect waves-light" href="?page=kel&sub=usr&act=del&id_user=' . $row['id_user'] . '"><i class="material-icons">delete</i> DEL</a>' ?>;
                     }
                 }
-                echo '</td>
+                return '</td>
                                     </tr>';
             }
         } else {
@@ -161,7 +161,7 @@ if (empty($_SESSION['admin'])) {
         $cdata = mysqli_num_rows($query);
         $cpg = ceil($cdata / $limit);
 
-        echo '<!-- Pagination START -->
+        return '<!-- Pagination START -->
                           <ul class="pagination">';
 
         if ($cdata > $limit) {
@@ -192,10 +192,10 @@ if (empty($_SESSION['admin'])) {
                 <?= '<li class="disabled"><a href="#"><i class="material-icons md-48">chevron_right</i></a></li>
                                   <li class="disabled"><a href="#"><i class="material-icons md-48">last_page</i></a></li>' ?>;
             }
-            echo ' </ul>
+            return ' </ul>
                                    <!-- Pagination END -->';
         } else {
-            echo '';
+            return '';
         }
     }
 }
