@@ -11,21 +11,21 @@ if (!empty($_SESSION['admin'])) {
                     <div class="logo-side center blue-grey darken-3">
                         <?php
                         $query = mysqli_query($config, "SELECT * FROM perusahaan");
-                        while ($data = mysqli_fetch_array($query)) {
+                        while ($data = mysql_fetch_array($query)) {
                             if (!empty($data['logo'])) {
-                                echo '<img class="logoside" src="./upload/' . $data['logo'] . '"/>';
+                                <?= '<img class="logoside" src="./upload/' . $data['logo'] . '"/>' ?>;
                             } else {
-                                echo '<img class="logoside" src="./asset/img/logo.png"/>';
+                                <?= '<img class="logoside" src="./asset/img/logo.png"/>' ?>;
                             }
                             if (!empty($data['nama'])) {
-                                echo '<h5 class="smk-side">' . $data['nama'] . '</h5>';
+                                <?= '<h5 class="smk-side">' . $data['nama'] . '</h5>' ?>;
                             } else {
-                                echo '<h5 class="smk-side"></h5>';
+                                <?= '<h5 class="smk-side"></h5>' ?>;
                             }
                             if (!empty($data['alamat'])) {
-                                echo '<p class="description-side">' . $data['alamat'] . '</p>';
+                                <?= '<p class="description-side">' . $data['alamat'] . '</p>' ?>;
                             } else {
-                                echo '<p class="description-side"></p>';
+                                <?= '<p class="description-side"></p>' ?>;
                             }
                         }
                         ?>
