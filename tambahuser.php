@@ -172,7 +172,7 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['errPassword'])) {
                             $errPassword = $_SESSION['errPassword'];
-                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errPassword . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errPassword . '</div>' ?>;
                             unset($_SESSION['errPassword']);
                         }
                         ?>
