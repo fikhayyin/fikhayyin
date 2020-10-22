@@ -149,7 +149,7 @@ if (empty($_SESSION['admin'])) {
                             }
                             if (isset($_SESSION['errEpUname5'])) {
                                 $errEpUname5 = $_SESSION['errEpUname5'];
-                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errEpUname5 . '</div>' ?>;
+//                                 <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' ?> . $errEpUname5 . '</div>' ;
                                 unset($_SESSION['errEpUname5']);
                             }
                             ?>
