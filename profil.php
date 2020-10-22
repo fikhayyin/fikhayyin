@@ -56,25 +56,25 @@ if (empty($_SESSION['admin'])) {
                                     die();
                                 } else {
 
-                                    $query = mysqli_query($config, "SELECT password FROM user WHERE id_user='$id_user' AND password=MD5('$password_lama')");
-                                    if (mysqli_num_rows($query) > 0) {
+                                    $query = mysql_query($config, "SELECT password FROM user WHERE id_user='$id_user' AND password=MD5('$password_lama')");
+                                    if (mysql\_num_rows($query) > 0) {
                                         $do = mysqli_query($config, "UPDATE user SET username='$username', password=MD5('$password'), nama='$nama', nip='$nip' WHERE id_user='$id_user'");
 
                                         if ($do == true) {
-                                            echo '<script language="javascript">
+                                            <?= '<script language="javascript">
                                                         window.alert("SUKSES! profil berhasil diupdate");
                                                         window.location.href="./logout.php";
-                                                      </script>';
+                                                      </script>' ?>;
                                         } else {
                                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
                                             header("Location: ./admin.php?page=pro&sub=pass");
                                             die();
                                         }
                                     } else {
-                                        echo '<script language="javascript">
+                                        <?= '<script language="javascript">
                                                     window.alert("ERROR! Password lama tidak sesuai. Anda mungkin tidak memiliki akses ke halaman ini");
                                                     window.location.href="./logout.php";
-                                                  </script>';
+//                                                   </script>' ?>;
                                     }
                                 }
                             }
@@ -104,7 +104,7 @@ if (empty($_SESSION['admin'])) {
             <?php
             if (isset($_SESSION['errQ'])) {
                 $errQ = $_SESSION['errQ'];
-                echo '<div id="alert-message" class="row">
+                <?= '<div id="alert-message" class="row">
                                 <div class="col m12">
                                     <div class="card red lighten-5">
                                         <div class="card-content notif">
@@ -112,12 +112,12 @@ if (empty($_SESSION['admin'])) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>';
+                            </div>' ?>;
                 unset($_SESSION['errQ']);
             }
             if (isset($_SESSION['errEmpty'])) {
                 $errEmpty = $_SESSION['errEmpty'];
-                echo '<div id="alert-message" class="row">
+                <?= '<div id="alert-message" class="row">
                                 <div class="col m12">
                                     <div class="card red lighten-5">
                                         <div class="card-content notif">
@@ -125,7 +125,7 @@ if (empty($_SESSION['admin'])) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>';
+                            </div>' ?>;
                 unset($_SESSION['errEmpty']);
             }
             ?>
@@ -144,12 +144,12 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['epuname'])) {
                                 $epuname = $_SESSION['epuname'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $epuname . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $epuname . '</div>' ?>;
                                 unset($_SESSION['epuname']);
                             }
                             if (isset($_SESSION['errEpUname5'])) {
                                 $errEpUname5 = $_SESSION['errEpUname5'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errEpUname5 . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errEpUname5 . '</div>' ?>;
                                 unset($_SESSION['errEpUname5']);
                             }
                             ?>
@@ -161,7 +161,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['epnama'])) {
                                 $epnama = $_SESSION['epnama'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $epnama . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $epnama . '</div>' ?>;
                                 unset($_SESSION['epnama']);
                             }
                             ?>
@@ -178,7 +178,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['epnip'])) {
                                 $epnip = $_SESSION['epnip'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $epnip . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $epnip . '</div>' ?>;
                                 unset($_SESSION['epnip']);
                             }
                             ?>
@@ -190,7 +190,7 @@ if (empty($_SESSION['admin'])) {
                             <?php
                             if (isset($_SESSION['errEpPassword5'])) {
                                 $errEpPassword5 = $_SESSION['errEpPassword5'];
-                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errEpPassword5 . '</div>';
+                                <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errEpPassword5 . '</div>' ?>;
                                 unset($_SESSION['errEpPassword5']);
                             }
                             ?>
