@@ -249,7 +249,7 @@ if (empty($_SESSION['admin'])) {
                         }
                         if (isset($_SESSION['errDup'])) {
                             $errDup = $_SESSION['errDup'];
-                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errDup . '</div>' ?>;
+                            return '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errDup . '</div>';
                             unset($_SESSION['errDup']);
                         }
                         ?>
@@ -305,7 +305,7 @@ if (empty($_SESSION['admin'])) {
                                 }
                                 if (isset($_SESSION['errFormat'])) {
                                     $errFormat = $_SESSION['errFormat'];
-                                    <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errFormat . '</div>' ?>;
+                                    return '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errFormat . '</div>';
                                     unset($_SESSION['errFormat']);
                                 }
                                 ?>
