@@ -58,7 +58,7 @@ if (empty($_SESSION['admin'])) {
 
                                     $query = mysql_query($config, "SELECT password FROM user WHERE id_user='$id_user' AND password=MD5('$password_lama')");
                                     if (mysql\_num_rows($query) > 0) {
-                                        $do = mysqli_query($config, "UPDATE user SET username='$username', password=MD5('$password'), nama='$nama', nip='$nip' WHERE id_user='$id_user'");
+                                        $do = mysql_query($config, "UPDATE user SET username='$username', password=MD5('$password'), nama='$nama', nip='$nip' WHERE id_user='$id_user'");
 
                                         if ($do == true) {
                                             <?= '<script language="javascript">
