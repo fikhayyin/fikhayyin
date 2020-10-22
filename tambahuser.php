@@ -138,17 +138,17 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['uname'])) {
                             $uname = $_SESSION['uname'];
-                            return '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $uname . '</div>';
+                            ?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $uname . '</div>' ?>;
                             unset($_SESSION['uname']);
                         }
                         if (isset($_SESSION['errUsername'])) {
                             $errUsername = $_SESSION['errUsername'];
-                            return '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errUsername . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errUsername . '</div>' ?>;
                             unset($_SESSION['errUsername']);
                         }
                         if (isset($_SESSION['errUser5'])) {
                             $errUser5 = $_SESSION['errUser5'];
-                            return '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errUser5 . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $errUser5 . '</div>' ?>;
                             unset($_SESSION['errUser5']);
                         }
                         ?>
@@ -160,7 +160,7 @@ if (empty($_SESSION['admin'])) {
                         <?php
                         if (isset($_SESSION['namauser'])) {
                             $namauser = $_SESSION['namauser'];
-                            return '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $namauser . '</div>';
+                            <?= '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $namauser . '</div>' ?>;
                             unset($_SESSION['namauser']);
                         }
                         ?>
